@@ -22,7 +22,7 @@ public class HTTPTest extends TestCase {
 	@Mock
 	private TcpIpConnection tcpip;
 	@InjectMocks
-	private HTTP http = new HTTP(8888);
+	private HTTP http = new HTTP(8080);
 	
 	private DateFormat dateFormat;
 
@@ -69,7 +69,7 @@ public class HTTPTest extends TestCase {
 		inOrder.verify(tcpip).waitForIncomingConnection();
 		inOrder.verify(tcpip).receiveData();
 		inOrder.verify(persistence).getPatient(2);
-		inOrder.verify(tcpip).sendData(html);
+		inOrder.verify(tcpip).sendData(Mockito.anyString());
 		inOrder.verify(tcpip).close();
 	}
 
